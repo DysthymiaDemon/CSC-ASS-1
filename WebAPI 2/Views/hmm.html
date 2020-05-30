@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="hello.js"></script>
+</head>
+
+<body>
+    <div>
+        <p class="locale"></p>
+        <p class="time"></p>
+        <p class="temp"></p>
+        <p class="feelsLike"></p>
+        <p class="weatherDesc"></p>
+        <p class="wind"></p>
+        <p class="precipMM"> </p>
+        <p class="visibilityKM"> </p>
+        <p class="UVIndex"> </p>
+    </div>
+</body>
+</html>
+<script src="../Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var uri = 'http://api.worldweatheronline.com/premium/v1/weather.ashx?key=115ce3fb547542a0b4294516201705&q=Singapore&format=json&num_of_days=1';
+    $(document).ready(function () {
+        $.getJSON(uri)
+            .done(function (data) {
+                console.log(data);
+                var windDesc = "Windspeed is " + data.current_condition.windspeedKmph + " coming from " + data.current_condition.winddirDegree + "/" + data.current_condition.winddir16Point
+                $('.locale').append(data.request.query);
+                $('.time').append(data.current_condition.observation_time);
+                $('.temp').append(data.current_condition.temp_C);
+                $('.feelsLike').append(data.current_condition.FeelsLikeC);
+                $('.weatherDesc').append(data.current_condition.weatherDesc.value);
+                $('.wind').append(windDesc);
+                $('.precipMM').append(data.current_condition.precipMM);
+                $('.visibilityKM').append(data.current_condition.visibility);
+                $('.UVIndex').append(data.current_condition.uvIndex);
+            });
+    });
+</script>
