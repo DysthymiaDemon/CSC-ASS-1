@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductStore.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,6 +20,9 @@ namespace ProductStore
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Web API configuration and services  
+            config.Filters.Add(new RequireHttpsAttribute());
         }
     }
 }
