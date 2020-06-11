@@ -1,0 +1,2 @@
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\StripeApplication\obj\Debug\StripeApplication.csprojAssemblyReference.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\StripeApplication\obj\Debug\StripeApplication.csproj.CoreCompileInputs.cache
