@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
+    <div id="spinner"></div>
     <form id="form1" runat="server">
         <div>
             <input type="submit" id="btnLocalWeatherPremium" value="Get Local Weather - Premium API" />
@@ -18,7 +19,21 @@
 </html>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+<script src="Scripts/jquery.signalR-2.1.0.min.js"></script>
+<script src="signalr/hubs"></script>
 
+    const spinner = document.getElementById("spinner");
+
+    function showSpinner() {
+        spinner.className = "show";
+        setTimeout(() => {
+            spinner.className = spinner.className.replace("show", "");
+        }, 5000);
+    }
+
+    $.connection.hub.error(function (error) {
+        console.log('SignalR error: ' + error)
+    });
 
     var _PremiumApiBaseURL = 'http://api.worldweatheronline.com/premium/v1/';
     var _PremiumApiKey = '115ce3fb547542a0b4294516201705';
@@ -27,6 +42,7 @@
     var output = '';
 
     $(document).ready(function () {
+        showSpinner();
         $('#btnLocalWeatherPremium').click(GetLocalWeather);
     });
 
@@ -53,13 +69,13 @@
 
     function LocalWeatherCallback(localWeather) {
 
-        output = "<br/> Locale: " + localWeather.data.request[0].query;
-        output += "<br/> Cloud Cover: " + localWeather.data.current_condition[0].cloudcover;
-        output += "<br/> Humidity: " + localWeather.data.current_condition[0].humidity;
-        output += "<br/> Temp C: " + localWeather.data.current_condition[0].temp_C;
-        output += "<br/> Visibility: " + localWeather.data.current_condition[0].weatherDesc[0].value;
-        output += "<br/> Observation Time: " + localWeather.data.current_condition[0].observation_time;
-        output += "<br/> Pressue: " + localWeather.data.current_condition[0].pressure;
+        output = "<br /> Locale: " + localWeather.data.request[0].query;
+        output += "<br /> Cloud Cover: " + localWeather.data.current_condition[0].cloudcover;
+        output += "<br /> Humidity: " + localWeather.data.current_condition[0].humidity;
+        output += "<br /> Temp C: " + localWeather.data.current_condition[0].temp_C;
+        output += "<br /> Visibility: " + localWeather.data.current_condition[0].weatherDesc[0].value;
+        output += "<br /> Observation Time: " + localWeather.data.current_condition[0].observation_time;
+        output += "<br /> Pressue: " + localWeather.data.current_condition[0].pressure;
 
         resultContainer.empty();
         resultContainer.html(output);
@@ -89,3 +105,34 @@
         });
     }
 </script>
+<style>
+    #spinner {
+        visibility: hidden;
+        width: 80px;
+        height: 80px;
+        border: 2px solid #f3f3f3;
+        border-top: 3px solid #f25a41;
+        border-radius: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    #spinner.show {
+        visibility: visible;
+    }
+</style>

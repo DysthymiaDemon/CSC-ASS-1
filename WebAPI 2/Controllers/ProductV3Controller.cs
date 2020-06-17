@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebAPI_2.ActionFilters;
 using WebAPI_2.Models;
 
 namespace WebAPI_2.Controllers
@@ -15,6 +16,7 @@ namespace WebAPI_2.Controllers
 
         //Version 3
         //[Authorize]
+        [LagResponse]
         [HttpGet]
         [Route("api/v3/products")]
         public IEnumerable<Product> GetAllProductsFromRepository()
@@ -34,6 +36,7 @@ namespace WebAPI_2.Controllers
         //Type of the parameter id must be an integer.
         //id should be greater than 2.
         //http://localhost:9000/api/v3/products/1 404 error code
+        [TerminateRequest]
         [HttpGet]
         [Route("api/v3/products/{id:int:min(2)}", Name = "getProductByIdv3")]
 
