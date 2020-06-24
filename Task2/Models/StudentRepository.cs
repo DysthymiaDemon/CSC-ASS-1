@@ -15,8 +15,8 @@ namespace Task2.Models
             Add(new Student { Name = "Philip", Year = 3, Course = "Diploma in Information Technology", Email = "philip@gmail.com" });
             Add(new Student { Name = "Ameen", Year = 1, Course = "Diploma in Information Technology", Email = "ameen@gmail.com" });
             Add(new Student { Name = "Darius", Year = 2, Course = "Diploma in Information Technology", Email = "darius@gmail.com" });
-            Add(new Student { Name = "Gary", Year = 3, Course = "Diploma in Information Technology", Email = "gary@gmail.com" });
-            Add(new Student { Name = "Zion", Year = 2, Course = "Diploma in Information Technology", Email = "zion@gmail.com" });
+            Add(new Student { Name = "Gary", Year = 3, Course = "Diploma in Business Information Technology", Email = "gary@gmail.com" });
+            Add(new Student { Name = "Zion", Year = 2, Course = "Diploma in Business Information Technology", Email = "zion@gmail.com" });
         }
         public IEnumerable<Student> GetAll()
         {
