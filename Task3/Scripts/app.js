@@ -61,6 +61,7 @@
     self.register = function () {
         self.result('');
         self.errors.removeAll();
+        const spinner = document.getElementById("spinner");
 
         grecaptcha.ready(function () {
             grecaptcha.execute('6LdPPKMZAAAAACi99M0aON5w12rR-jxXaaTkwN3m', { action: 'login' }).then(function (token) {
@@ -71,7 +72,7 @@
                     ConfirmPassword: self.registerPassword2(),
                     Recaptcha: token
                 };
-
+                spinner.className = "show";
                 $.ajax({
                     type: 'POST',
                     url: '/api/Account/Verify',
@@ -86,10 +87,19 @@
                             data: JSON.stringify(data)
                         }).done(function (data) {
                             self.result("Done!");
-                        }).fail(showError);
-                    }       
-                }).fail(showError);
-
+                            spinner.className = spinner.className.replace("show", "");
+                        }).fail(function (error) {
+                            spinner.className = spinner.className.replace("show", "")
+                            showError(error)
+                        });
+                    }
+                    else {
+                        spinner.className = spinner.className.replace("show", "")
+                    }
+                    }).fail(function (error) {
+                        spinner.className = spinner.className.replace("show", "")
+                        showError(error)
+                    });
             });
         });
      
