@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace ProductStore.Controllers
 {
+    [RequireHttps]
     public class ValuesController : ApiController
     {
         [RequireHttps]
