@@ -42,6 +42,7 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Register</button>
             </div>
+            <div id="spinner"></div>
         </form>
     </div>
 
@@ -70,6 +71,21 @@
 
     <script src="https://www.google.com/recaptcha/api.js?render=6LdPPKMZAAAAACi99M0aON5w12rR-jxXaaTkwN3m"></script>
     <script>
+        const spinner = document.getElementById("spinner");
+
+        function showSpinner() {
+            spinner.className = "show";
+            //setTimeout(() => {
+            //    spinner.className = spinner.className.replace("show", "");
+            //}, 2000);
+        }
+
+        function hideSpinner() {
+            //spinner.className = "show";
+            setTimeout(() => {
+                spinner.className = spinner.className.replace("show", "");
+            }, 2000);
+        }
 
         grecaptcha.ready(function () {
             grecaptcha.execute('6LdPPKMZAAAAACi99M0aON5w12rR-jxXaaTkwN3m', { action: 'login' }).then(function (token) {
@@ -77,5 +93,39 @@
             });
         });
     </script>
-
 }
+
+@section Styles{
+    <style>
+        <style>
+    #spinner {
+        visibility: hidden;
+        width: 80px;
+        height: 80px;
+        border: 2px solid #f3f3f3;
+        border-top: 3px solid #f25a41;
+        border-radius: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    #spinner.show {
+        visibility: visible;
+    }
+    </style>
+    }
