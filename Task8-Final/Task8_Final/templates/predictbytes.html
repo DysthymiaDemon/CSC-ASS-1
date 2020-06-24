@@ -1,0 +1,19 @@
+﻿
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/content/form.css" />
+</head>
+<form method="get" action="javascript: void(0);" id="predictform1" class="form-group" autocomplete="off" role="main">
+    <h2 class="a11y-hidden">Clarifai API Predict Receipt (Bytes)</h2>
+
+    <div>
+        <label for="img">Select image:</label>
+        <input type="file" id="img" name="img" accept="image/*" required>
+    </div>
+    <input type="submit" value="Upload" />
+    <textarea id="output">
+    </textarea>
+</form>
+
+<div>
+    <img id="preview" />
+</div>

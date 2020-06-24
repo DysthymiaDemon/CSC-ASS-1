@@ -1,0 +1,97 @@
+﻿
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/content/form.css" />
+</head>
+<div class="form-group" autocomplete="off" role="main">
+    <h2 class="a11y-hidden">Clarifai API Upload and Get tags (URL)</h2>
+
+    <div>
+        <label class="label">
+            <input type="text" class="text" name="text" placeholder="URL" id="inputurl" required />
+        </label>
+    </div>
+    <div>
+    <input type="button" onclick="predict()" value="Predict" />
+        </div>
+    <div>
+    <input type="button" onclick="submit()" value="Upload" />
+        </div>
+    <h3>Tags</h3>
+    <div>
+        <input type="text" class="text" id="output" readonly />
+    </div>
+    <div>
+        <p class="text-justify" id="outcome"></p>
+    </div>
+</div>
+
+<div>
+    <img id="preview" />
+</div>
+
+
+
+<script src="/static/scripts/jquery-1.10.2.js"></script>
+<script>
+
+    function predict() {
+        var urlinput = document.getElementById("inputurl")
+        var output = document.getElementById("output")
+        var outcome = document.getElementById("outcome")
+
+        output.value = ""
+        outcome.innerHTML = ""
+
+        var input = {
+            url: urlinput.value
+        }
+
+        try {
+            $.ajax({
+                data: input,
+                type: 'POST',
+                url: `${window.origin}/predicturl/processPredict`
+            }).done(function (data) {
+                if (data.error) {
+                    outcome.append(data.error)
+                }
+                else {
+                    output.value = data
+                    outcome.append("Successfully predicted")
+                }
+            })
+        } catch (Exception) {
+            outcome.append("Error")
+        }
+    }
+
+
+    function submit() {
+        var urlinput = document.getElementById("inputurl")
+        var output = document.getElementById("output")
+        var outcome = document.getElementById("outcome")
+
+        output.value = ""
+        outcome.innerHTML = ""
+
+        var input = {
+            url: urlinput.value
+        }
+        try {
+            $.ajax({
+                data: input,
+                type: 'POST',
+                url: `${window.origin}/processUploadURL`
+            }).done(function (data) {
+                if (data.error) {
+                    outcome.append(data.error)
+                }
+                else {
+                    outcome.append(data)
+                }
+            })
+        } catch (Exception) {
+            outcome.append("Error")
+        }
+    }
+</script>
