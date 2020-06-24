@@ -10,9 +10,58 @@
 	<label for="search">live search</label>
 	<p>Enter the name or info about a speaker</p>
 	<input type="search" name="search" id="search" placeholder="name or info" />
+	<div id="spinner"></div>
 </div>
 <div id="update"></div>
 <script src="jquery.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
+<script>
+const spinner = document.getElementById("spinner");
+
+    function showSpinner() {
+        spinner.className = "show";
+        //setTimeout(() => {
+        //    spinner.className = spinner.className.replace("show", "");
+        //}, 2000);
+    }
+
+    function hideSpinner() {
+        //spinner.className = "show";
+        setTimeout(() => {
+            spinner.className = spinner.className.replace("show", "");
+        }, 2000);
+    }
+</script>
+<style>
+    #spinner {
+        visibility: hidden;
+        width: 80px;
+        height: 80px;
+        border: 2px solid #f3f3f3;
+        border-top: 3px solid #f25a41;
+        border-radius: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    #spinner.show {
+        visibility: visible;
+    }
+</style>
