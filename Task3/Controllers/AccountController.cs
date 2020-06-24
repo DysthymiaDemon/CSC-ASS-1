@@ -331,13 +331,6 @@ namespace Task3.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var isCaptchaValid = await _recaptchaService.Verify(model.Recaptcha);
-
-            //if(!isCaptchaValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
