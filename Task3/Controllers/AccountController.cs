@@ -26,19 +26,16 @@ namespace Task3.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-        private GoogleRecaptchaService _recaptchaService;
 
         public AccountController()
         {
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat,
-            GoogleRecaptchaService googleService)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
-            _recaptchaService = googleService;
         }
 
         public ApplicationUserManager UserManager

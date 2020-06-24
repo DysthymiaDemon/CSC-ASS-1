@@ -13,15 +13,9 @@ namespace Task3.Controllers
 {
     [RoutePrefix("Home")]
     public class HomeController : Controller
-    {
-        private IGoogleRecaptchaService _googleService;
+    { 
 
         public HomeController() { }
-
-        public HomeController(IGoogleRecaptchaService service)
-        {
-            _googleService = service;
-        }
 
         public ActionResult Index()
         {
