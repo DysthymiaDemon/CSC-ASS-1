@@ -1,5 +1,5 @@
 ﻿
-
+<html>
 <div class="row">
     <div class="col-sm-4">
         <form data-bind="submit: callApi">
@@ -66,6 +66,7 @@
         </form>
     </div>
 </div>
+</html>
 @section Scripts{
     @Scripts.Render("~/bundles/app")
 
@@ -94,10 +95,7 @@
         });
     </script>
 }
-
-@section Styles{
     <style>
-        <style>
     #spinner {
         visibility: hidden;
         width: 80px;
@@ -128,4 +126,3 @@
         visibility: visible;
     }
     </style>
-    }
