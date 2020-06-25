@@ -1,0 +1,28 @@
+D:\Users\ameen\source\repos\awsApplication\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.deps.json
+D:\Users\ameen\source\repos\awsApplication\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.runtimeconfig.json
+D:\Users\ameen\source\repos\awsApplication\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.runtimeconfig.dev.json
+D:\Users\ameen\source\repos\awsApplication\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.dll
+D:\Users\ameen\source\repos\awsApplication\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.pdb
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.csproj.CoreCompileInputs.cache
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.RazorAssemblyInfo.cache
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.RazorAssemblyInfo.cs
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.AssemblyInfoInputs.cache
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.AssemblyInfo.cs
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.RazorTargetAssemblyInfo.cache
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.dll
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.pdb
+D:\Users\ameen\source\repos\awsApplication\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.csprojAssemblyReference.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.deps.json
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.runtimeconfig.json
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.runtimeconfig.dev.json
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.dll
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\bin\Debug\netcoreapp2.2\awsApplication.pdb
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.csprojAssemblyReference.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.csproj.CoreCompileInputs.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.RazorAssemblyInfo.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.RazorAssemblyInfo.cs
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.AssemblyInfoInputs.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.AssemblyInfo.cs
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.RazorTargetAssemblyInfo.cache
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.dll
+D:\Users\ameen\GitHub Desktop\CSC-ASS-1\awsApplication\obj\Debug\netcoreapp2.2\awsApplication.pdb
