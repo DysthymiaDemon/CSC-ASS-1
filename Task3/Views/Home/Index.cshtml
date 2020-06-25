@@ -76,16 +76,10 @@
 
         function showSpinner() {
             spinner.className = "show";
-            //setTimeout(() => {
-            //    spinner.className = spinner.className.replace("show", "");
-            //}, 2000);
         }
 
         function hideSpinner() {
-            //spinner.className = "show";
-            setTimeout(() => {
                 spinner.className = spinner.className.replace("show", "");
-            }, 2000);
         }
 
         grecaptcha.ready(function () {
