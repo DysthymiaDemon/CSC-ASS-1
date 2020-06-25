@@ -14,5 +14,12 @@ namespace WebAPI_2.Controllers
 
             return View();
         }
+
+        public ActionResult task1()
+        {
+            ViewBag.Title = "Task 1";
+
+            return View();
+        }
     }
 }
