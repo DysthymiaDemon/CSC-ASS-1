@@ -5,9 +5,15 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, render_template, redirect, jsonify, make_response, request
 from Task8_Final import app
+from pathlib import Path  
+
+import requests
+import pprint
 
 from clarifai.rest import ClarifaiApp
 
+
+from veryfi import Client
 appClarifai = ClarifaiApp(api_key='783bd3bf77d94d37b14b7a069bae86b2')
 
 @app.route('/')
@@ -51,16 +57,6 @@ def clarifai():
     )
 
 
-
-@app.route('/uploadbytes')
-def uploadbytes():
-    """Renders the clarifai page."""
-    return render_template(
-        'uploadbytes.html',
-        title='Upload by File',
-        year=datetime.now().year,
-        message='Upload by File Demo'
-    )
 
 @app.route('/uploadurl/processTags', methods=["POST"])
 def processTags():
@@ -106,19 +102,52 @@ def updateurl():
         message='Upload by URL Demo'
     )
 
-
-
-@app.route('/predictbytes')
-def predictbytes():
+@app.route('/veryfi')
+def veryfi():
     """Renders the clarifai page."""
     return render_template(
-        'predictbytes.html',
-        title='Predict Receipt by File',
+        'veryfi.html',
+        title='Receipt Amount',
         year=datetime.now().year,
-        message='Predict Receipt by File Demo'
+        message='Get Receipt Amount Demo'
     )
 
+@app.route('/veryfi/getamount', methods=["POST"])
 
+def getamount():
+        CLIENT_ID = 'vrfcubWWckvPac3avIzhd8keEEG5atcBVnupysx'
+        ENVIRONMENT_URL = "api.veryfi.com"
+
+        username = "2014.philipleongjunhwa"
+        api_key = "37330e9bed86bad37528fcdbd916b575"
+        process_image_url = 'https://{0}/api/v7/partner/documents/'.format(ENVIRONMENT_URL)
+        headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json", 
+            "CLIENT-ID": CLIENT_ID,
+            "AUTHORIZATION": "apikey {0}:{1}".format(username, api_key)
+        }
+         
+        try:
+            file_url = request.form['url']
+            file_name =  Path(file_url).name
+            payload = {'file_name': file_name,'file_url': file_url}
+
+            try:
+                response = requests.post(url=process_image_url, headers=headers, json=payload)
+
+                try:
+                    pp = pprint.PrettyPrinter(indent=2)
+                    pp.pprint(response.json())
+
+                except: 
+                    return jsonify({"error": "Internal server error"})
+
+                return str(response.json()['total'])
+            except:
+                return jsonify({"error": "Please enter a valid URL"})
+        except:
+            return jsonify({"error": "Error"})
 
 @app.route('/predicturl')
 def predicturl():

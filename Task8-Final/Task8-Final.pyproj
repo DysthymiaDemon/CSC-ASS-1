@@ -71,10 +71,9 @@
     <Content Include="Task8_Final\templates\contact.html" />
     <Content Include="Task8_Final\templates\index.html" />
     <Content Include="Task8_Final\templates\layout.html" />
-    <Content Include="Task8_Final\templates\predictbytes.html" />
     <Content Include="Task8_Final\templates\predicturl.html" />
-    <Content Include="Task8_Final\templates\uploadbytes.html" />
     <Content Include="Task8_Final\templates\uploadurl.html" />
+    <Content Include="Task8_Final\templates\veryfi.html" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

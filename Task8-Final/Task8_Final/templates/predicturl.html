@@ -16,7 +16,7 @@
     <div>
     <input type="button" onclick="submit()" value="Upload" />
         </div>
-    <h3>Tags</h3>
+    <h3>Outcome</h3>
     <div>
         <input type="text" class="text" id="output" readonly />
     </div>
@@ -24,7 +24,7 @@
         <p class="text-justify" id="outcome"></p>
     </div>
 </div>
-
+<div id="spinner"></div>
 <div>
     <img id="preview" />
 </div>
@@ -33,8 +33,16 @@
 
 <script src="/static/scripts/jquery-1.10.2.js"></script>
 <script>
+    function showSpinner() {
+        spinner.className = "show";
+    }
+
+    function hideSpinner() {
+        spinner.className = spinner.className.replace("show", "");
+    }
 
     function predict() {
+        showSpinner()
         var urlinput = document.getElementById("inputurl")
         var output = document.getElementById("output")
         var outcome = document.getElementById("outcome")
@@ -54,19 +62,23 @@
             }).done(function (data) {
                 if (data.error) {
                     outcome.append(data.error)
+                    hideSpinner()
                 }
                 else {
                     output.value = data
                     outcome.append("Successfully predicted")
+                    hideSpinner()
                 }
             })
         } catch (Exception) {
             outcome.append("Error")
+            hideSpinner()
         }
     }
 
 
     function submit() {
+        showSpinner()
         var urlinput = document.getElementById("inputurl")
         var output = document.getElementById("output")
         var outcome = document.getElementById("outcome")
@@ -85,13 +97,16 @@
             }).done(function (data) {
                 if (data.error) {
                     outcome.append(data.error)
+                    hideSpinner()
                 }
                 else {
                     outcome.append(data)
+                    hideSpinner()
                 }
             })
         } catch (Exception) {
             outcome.append("Error")
+            hideSpinner()
         }
     }
 </script>

@@ -22,7 +22,7 @@
         <p class="text-justify" id="outcomeUpload"></p>
     </div>
 </div>
-
+<div id="spinner"></div>
 <div>
     <img id="preview" />
 </div>
@@ -31,7 +31,17 @@
 
 <script src="/static/scripts/jquery-1.10.2.js"></script>
 <script>
+    function showSpinner() {
+        spinner.className = "show";
+    }
+
+    function hideSpinner() {
+        spinner.className = spinner.className.replace("show", "");
+    }
+
+
     function submit() {
+        showSpinner()
         var urlinput = document.getElementById("inputurl")
         var output = document.getElementById("output")
         var outcomeTag = document.getElementById("outcomeTag")
@@ -51,6 +61,7 @@
             }).done(function (data) {
                 if (data.error) {
                     outcomeTag.append(data.error)
+                    hideSpinner()
                 }
                 else {
                     console.log(data)
@@ -63,15 +74,18 @@
                     }).done(function (data) {
                         if (data.error) {
                             outcomeUpload.append(data.error)
+                            hideSpinner()
                         }
                         else {
                             outcomeUpload.append(data)
+                            hideSpinner()
                         }
                     })
                 }
             })
         } catch (Exception) {
             outcome.append("Error")
+            hideSpinner()
         }
     }
 </script>
