@@ -8,6 +8,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+ul {
+    list-style: none !important;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -26,8 +29,6 @@ textarea {
     background: #BF996B;
     padding: 10px;
     width: 30%;
-    -webkit-border-radius: 10px 10px 0 0;
-    -moz-border-radius: 10px 10px 0 0;
     border-radius: 10px 10px 0 0;
 }
 
@@ -57,7 +58,6 @@ textarea {
 }
 
     #update ul {
-        list-style: none;
         margin: 0;
         padding: 0;
     }
@@ -65,27 +65,10 @@ textarea {
         #update ul li {
             width: 100%;
             padding: 0 20px;
-            background: #EEE;
             padding-bottom: 10px;
-            height: 110px;
+            height: 200px;
             overflow: hidden;
-            border-bottom: 1px dotted #CCC;
-            -webkit-animation: myanim 1s;
-            -moz-animation: myanim 1s;
-            -o-animation: myanim 1s;
-            animation: myanim 1s;
-            -webkit-transition: height 0.3s ease-out;
-            -moz-transition: height 0.3s ease-out;
-            -o-transition: height 0.3s ease-out;
-            transition: height 0.3s ease-out;
         }
-
-    #update li:hover {
-        background: #FFFCE5;
-        min-height: 110px;
-        height: 250px;
-        overflow: visible;
-    }
 
     #update h2 {
         margin: 0;
@@ -101,52 +84,38 @@ textarea {
 
     #update img {
         float: left;
-        width: 80px;
+        width: 150px;
         margin-right: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
         border-radius: 10px;
     }
 
-@-webkit-keyframes myanim {
-    0% {
-        opacity: 0.3;
+#spinner {
+    visibility: hidden;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #f3f3f3;
+    border-top: 3px solid #f25a41;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
     }
 
-    100% {
-        opacity: 1.0;
+    to {
+        transform: rotate(360deg);
     }
 }
 
-@-moz-keyframes myanim {
-    0% {
-        opacity: 0.3;
-    }
-
-    100% {
-        opacity: 1.0;
-    }
+#spinner.show {
+    visibility: visible;
 }
-
-@-o-keyframes myanim {
-    0% {
-        opacity: 0.3;
-    }
-
-    100% {
-        opacity: 1.0;
-    }
-}
-
-@keyframes myanim {
-    0% {
-        opacity: 0.3;
-    }
-
-    100% {
-        opacity: 1.0;
-    }
-}
-
-
 

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProductStore.Models
 {
-    public class TalentRepository
+    public class TalentRepository : ITalentRepository
     {
         private List<Talent> talents = new List<Talent>();
         private int _nextId = 1;
