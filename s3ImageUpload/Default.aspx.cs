@@ -37,40 +37,41 @@ namespace s3ImageUpload
                 Image1.ImageUrl = "data:image/jpeg;base64," + base64String;
                 Image1.Visible = true;
                 GetObjectResponse getResponse;
-                var bucketName = "BUCKET_NAME";
+                var bucketName = "bucketdemotwo";
 
-                //// Store to S3
-                //{
-                //    // Do not actually store your IAM credentials in code. EC2 Role is best
-                //    var awsKey = "ACCESS_KEY_ID";
-                //    var awsSecretKey = "SECRET_KEY_ID";
-                //    var bucketRegion = Amazon.RegionEndpoint.APSoutheast1;   // Your bucket region
-                //    var s3 = new AmazonS3Client(awsKey, awsSecretKey, bucketRegion);
-                //    var putRequest = new PutObjectRequest();
-                //    putRequest.BucketName = bucketName;        // Your bucket name
-                //    putRequest.ContentType = "image/jpeg";
-                //    putRequest.InputStream = FileUpload1.PostedFile.InputStream;// key will be the name of the image in your bucket
-                //    putRequest.Key = FileUpload1.FileName;
-                //    putRequest.CannedACL = S3CannedACL.PublicRead;
-                //    PutObjectResponse putResponse = s3.PutObject(putRequest);
+                // Store to S3
+                {
+                    // Do not actually store your IAM credentials in code. EC2 Role is best
+                    var awsKey = "AKIAJUA3AFCCXNXSJDRA";
+                    var awsSecretKey = "pQ60KX5UltQQkxyaEJiG0/pYENEj6V9vKKqas4TG";
+                    var bucketRegion = Amazon.RegionEndpoint.APSoutheast1;   // Your bucket region
+                    var s3 = new AmazonS3Client(awsKey, awsSecretKey, bucketRegion);
+                    var putRequest = new PutObjectRequest();
+                    putRequest.BucketName = bucketName;        // Your bucket name
+                    putRequest.ContentType = "image/jpeg";
+                    putRequest.InputStream = FileUpload1.PostedFile.InputStream;// key will be the name of the image in your bucket
+                    putRequest.Key = FileUpload1.FileName;
+                    putRequest.CannedACL = S3CannedACL.PublicRead;
+                    PutObjectResponse putResponse = s3.PutObject(putRequest);
 
-                //    var pullRequest = new GetObjectRequest();
-                //    pullRequest.BucketName = bucketName;
-                //    pullRequest.Key = FileUpload1.FileName;
-                //    getResponse = s3.GetObject(pullRequest);
-                //}
+                    var pullRequest = new GetObjectRequest();
+                    pullRequest.BucketName = bucketName;
+                    pullRequest.Key = FileUpload1.FileName;
+                    getResponse = s3.GetObject(pullRequest);
+                }
 
-                //var imageUrl = "https://"+bucketName+".s3-"+Amazon.RegionEndpoint.APSoutheast1.SystemName+".amazonaws.com/"+FileUpload1.FileName;
+                var imageUrl = "https://" + bucketName + ".s3-" + Amazon.RegionEndpoint.APSoutheast1.SystemName + ".amazonaws.com/" + FileUpload1.FileName;
                 //var imageUrl = "https://kickthebucketdemo.s3-ap-southeast-1.amazonaws.com/Hassum_Harrod_tn.jpg";
-                //ImageURL.Text = imageUrl;
-                //ImageURL.Visible = true;
 
-                //String bitely = ShortenUrl(imageUrl).Result;
-                String bitely = "bit.ly/3dAhsFc";
-                String custom = CustomBackHalf(bitely, FileUpload1.FileName).Result;
+                ImageURL.Text = imageUrl;
+                ImageURL.Visible = true;
+
+                String bitely = ShortenUrl(imageUrl).Result;
+                //String bitely = "bit.ly/3dAhsFc";
+                //String custom = CustomBackHalf(bitely, FileUpload1.FileName).Result;
                 //method to make custom back half
                 //change below
-                bitlyURL.Text = custom;
+                bitlyURL.Text = bitely;
                 bitlyURL.Visible = true;
             }
         }
