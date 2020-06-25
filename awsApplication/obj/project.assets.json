@@ -13151,11 +13151,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\ameen\\source\\repos\\awsApplication\\awsApplication\\awsApplication.csproj",
+      "projectUniqueName": "D:\\Users\\ameen\\GitHub Desktop\\CSC-ASS-1\\awsApplication\\awsApplication.csproj",
       "projectName": "awsApplication",
-      "projectPath": "D:\\Users\\ameen\\source\\repos\\awsApplication\\awsApplication\\awsApplication.csproj",
+      "projectPath": "D:\\Users\\ameen\\GitHub Desktop\\CSC-ASS-1\\awsApplication\\awsApplication.csproj",
       "packagesPath": "C:\\Users\\ameen\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\ameen\\source\\repos\\awsApplication\\awsApplication\\obj\\",
+      "outputPath": "D:\\Users\\ameen\\GitHub Desktop\\CSC-ASS-1\\awsApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
