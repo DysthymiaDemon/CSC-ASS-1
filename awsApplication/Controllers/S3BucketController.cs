@@ -25,7 +25,8 @@ namespace awsApplication.Controllers
         {
             var response = await _service.CreateBucketAsync(bucketname);
 
-            return Ok();
+            //return response.Status(response.Message);
+            return Ok(response.Status + " " + response.Message);
         }
     }
 }
