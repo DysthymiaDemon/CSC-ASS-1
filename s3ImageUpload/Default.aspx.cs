@@ -66,7 +66,7 @@ namespace s3ImageUpload
                 //ImageURL.Visible = true;
 
                 //String bitely = ShortenUrl(imageUrl).Result;
-                String bitely = "bit.ly/2Bdommq";
+                String bitely = "bit.ly/3dAhsFc";
                 String custom = CustomBackHalf(bitely, FileUpload1.FileName).Result;
                 //method to make custom back half
                 //change below
@@ -112,11 +112,12 @@ namespace s3ImageUpload
         {
             string _bitlyToken = "560c63bf3029b375974070eea7ebaf4042c8782a";
             HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Clear();
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
                 "https://api-ssl.bitly.com/v4/custom_bitlinks")
             {
-                Content = new StringContent($"{{\"bitlink_id\":\"{bitly}\",\"custom_bitlink\":\"bit.ly/huehuehue\"}}",
+                Content = new StringContent($"{{\"bitlink_id\":\"{bitly}\",\"custom_bitlink\":\"{bitly}huehuehu123131wsafc\"}}",
                                                 Encoding.UTF8,
                                                 "application/json")
             };
@@ -125,6 +126,8 @@ namespace s3ImageUpload
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _bitlyToken);
                 Debug.WriteLine(request.Content.ReadAsStringAsync().Result);
+
+
                 var response = await client.SendAsync(request).ConfigureAwait(false);
 
                 if (!response.IsSuccessStatusCode)
