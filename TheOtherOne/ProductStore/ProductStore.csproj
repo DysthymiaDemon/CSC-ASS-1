@@ -208,6 +208,18 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="SearchTalents\images\Barot_Bellingham_tn.jpg" />
+    <Content Include="SearchTalents\images\Constance_Smith_tn.jpg" />
+    <Content Include="SearchTalents\images\Hassum_Harrod_tn.jpg" />
+    <Content Include="SearchTalents\images\Hillary_Goldwynn_tn.jpg" />
+    <Content Include="SearchTalents\images\Jennifer_Jerome_tn.jpg" />
+    <Content Include="SearchTalents\images\Jonathan_Ferrar_tn.jpg" />
+    <Content Include="SearchTalents\images\LaVonne_LaRue_tn.jpg" />
+    <Content Include="SearchTalents\images\Riley_Rewington_tn.jpg" />
+    <Content Include="SearchTalents\images\Xhou_Ta_tn.jpg" />
+    <Content Include="SearchTalents\index.html" />
+    <Content Include="SearchTalents\jquery.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,13 +231,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\data.json" />
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Home\talents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="SearchTalents\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

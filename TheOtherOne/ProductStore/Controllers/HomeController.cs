@@ -16,5 +16,13 @@ namespace ProductStore.Controllers
 
             return View();
         }
+
+        [RequireHttps]
+        public ActionResult Talents()
+        {
+            ViewBag.Title = "Talents Page";
+
+            return View();
+        }
     }
 }
