@@ -17,11 +17,11 @@ Creating and Consuming Web API
 #### **GET** /api/v1/students
 >Description: Get all Students
 
-URI Parameters: None
+>URI Parameters: None
 
-Body Parameters: None
+>Body Parameters: None
 
-Response : 200 OK 
+>Response : 200 OK 
 [
     {
         "Id": 1,
