@@ -13,11 +13,13 @@ using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
 using RouteAttribute = System.Web.Http.RouteAttribute;
 
+// Talents Controller Version 1
 namespace ProductStore.Controllers
 {
     [RequireHttps]
     public class TalentsController : ApiController
     {
+        // Declare Talent Repository
         static readonly ITalentRepository _repository = new TalentRepository();
 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
