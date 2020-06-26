@@ -9,12 +9,26 @@ Creating and Consuming Web API
 - [Team](#team)
 
 ## Diagram
+#### Task 1 Diagram
 [Task 1 Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task1.pdf)<br/>
 
 #### Task 3 Sequence Diagram
 ![Task 3 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task3.jpg)
 
+#### Task 4 Sequence Diagram
+![Task 4 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task4.jpg)
 
+#### Task 5 Sequence Diagram
+![Task 5 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task5.jpg)
+
+#### Task 6 Sequence Diagram
+![Task 6 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task6.jpg)
+
+#### Task 7 Diagram
+![Task 7 Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task7%20Diagram.png)
+
+#### Task 8 Sequence Diagram
+![Task 8 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task8.jpg)
 
 ## Documents
 
