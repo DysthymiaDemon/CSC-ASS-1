@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+veryfi/__init__.py
+veryfi/errors.py
+veryfi.egg-info/PKG-INFO
+veryfi.egg-info/SOURCES.txt
+veryfi.egg-info/dependency_links.txt
+veryfi.egg-info/requires.txt
+veryfi.egg-info/top_level.txt
