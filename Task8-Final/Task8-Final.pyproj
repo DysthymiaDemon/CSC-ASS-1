@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="Task8_Final\NewAgent-f74637f9a6d4.json" />
     <Content Include="Task8_Final\static\content\bootstrap.css" />
     <Content Include="Task8_Final\static\content\bootstrap.min.css" />
     <Content Include="Task8_Final\static\content\clarifai.css" />
