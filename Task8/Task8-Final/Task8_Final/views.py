@@ -18,7 +18,7 @@ import pprint
 from clarifai.rest import ClarifaiApp
 
 from veryfi import Client
-appClarifai = ClarifaiApp(api_key='783bd3bf77d94d37b14b7a069bae86b2')
+appClarifai = ClarifaiApp(api_key='')
 
 
 @app.route('/')
@@ -137,10 +137,10 @@ def getamount():
 
         # Veryfi API Details
 
-    CLIENT_ID = 'vrfcubWWckvPac3avIzhd8keEEG5atcBVnupysx'
+    CLIENT_ID = ''
     ENVIRONMENT_URL = 'api.veryfi.com'
-    username = '2014.philipleongjunhwa'
-    api_key = '37330e9bed86bad37528fcdbd916b575'
+    username = ''
+    api_key = ''
     process_image_url = \
         'https://{0}/api/v7/partner/documents/'.format(ENVIRONMENT_URL)
     headers = {
@@ -153,7 +153,7 @@ def getamount():
         # Google Credentials for DialogFlow API
 
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = \
-        os.path.abspath('C:/Users/2014p/CSC-ASS-1/Task8/Task8-Final/Task8_Final/NewAgent-f74637f9a6d4.json'
+        os.path.abspath(''
                         )
 
         # Call Veryfi API
@@ -183,7 +183,7 @@ def getamount():
                 # DialogFlow API Details
 
             try:
-                project_id = 'newagent-chdijf'
+                project_id = ''
                 session_id = '12345'
                 texts = 'The price is ' + str(response.json()['total'])
                 language_code = 'en-US'

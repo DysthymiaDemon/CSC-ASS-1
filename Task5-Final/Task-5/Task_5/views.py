@@ -64,7 +64,7 @@ def upload():
     local_file = os.path.normpath( 'C:/Users/2014p/CSC-ASS-1/Task5-Final/Task-5/Task_5/images/'+ request.form['file']);
     bucket =  'bucketdemotwo'
     s3_file = request.form['file']
-    _bitlyToken = '560c63bf3029b375974070eea7ebaf4042c8782a'
+    _bitlyToken = ''
     API_ENDPOINT = 'https://api-ssl.bitly.com/v4/shorten'
 
     try:

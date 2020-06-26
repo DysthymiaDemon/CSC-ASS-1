@@ -42,8 +42,8 @@ namespace s3ImageUpload
                 // Store to S3
                 {
                     // Do not actually store your IAM credentials in code. EC2 Role is best
-                    var awsKey = "AKIAJUA3AFCCXNXSJDRA";
-                    var awsSecretKey = "pQ60KX5UltQQkxyaEJiG0/pYENEj6V9vKKqas4TG";
+                    var awsKey = "";
+                    var awsSecretKey = "";
                     var bucketRegion = Amazon.RegionEndpoint.APSoutheast1;   // Your bucket region
                     var s3 = new AmazonS3Client(awsKey, awsSecretKey, bucketRegion);
                     var putRequest = new PutObjectRequest();
@@ -78,7 +78,7 @@ namespace s3ImageUpload
 
         public static async Task<string> ShortenUrl(string url)
         {
-            string _bitlyToken = "560c63bf3029b375974070eea7ebaf4042c8782a";
+            string _bitlyToken = "";
             HttpClient client = new HttpClient();
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
@@ -111,7 +111,7 @@ namespace s3ImageUpload
 
         public static async Task<string> CustomBackHalf(string bitly, string filename)
         {
-            string _bitlyToken = "560c63bf3029b375974070eea7ebaf4042c8782a";
+            string _bitlyToken = "";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Clear();
 
