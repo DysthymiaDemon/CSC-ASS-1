@@ -29,6 +29,7 @@ namespace ProductStore.Controllers
                 return _repository.GetAll();
             }catch(Exception e)
             {
+                Console.WriteLine(e);
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
         }
