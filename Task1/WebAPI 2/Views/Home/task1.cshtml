@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "task1";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div id="spinner"></div>
+    <form id="form1" runat="server">
+        <div>
+            <input type="submit" id="btnLocalWeatherPremium" value="Get Local Weather - Premium API" />
+            <br />
+            <br />
+            <div id="resultContainer">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="Scripts/jquery.signalR-2.1.0.min.js"></script>
+<script src="signalr/hubs"></script>
+<script type="text/javascript">
+
+    const spinner = document.getElementById("spinner");
+
+    // Spinner
+    function showSpinner() {
+        spinner.className = "show";
+    }
+
+    function hideSpinner() {
+        spinner.className = spinner.className.replace("show", "");
+    }
+
+
+    // Weather API
+    var _PremiumApiBaseURL = 'http://api.worldweatheronline.com/premium/v1/';
+    var _PremiumApiKey = '115ce3fb547542a0b4294516201705';
+
+    var resultContainer = $('#resultContainer');
+    var output = '';
+
+    $(document).ready(function () {
+        $('#btnLocalWeatherPremium').click(GetLocalWeather);
+    });
+
+    //------------ LOCAL WEATHER ----------------
+
+    function GetLocalWeather(e) {
+
+        var localWeatherInput = {
+            query: 'Singapore',
+            format: 'JSON',
+            num_of_days: '1',
+            date: '',
+            fx: '',
+            cc: '',
+            tp: '',
+            includelocation: '',
+            show_comments: '',
+            callback: 'LocalWeatherCallback'
+        };
+
+        JSONP_LocalWeather(localWeatherInput);
+        e.preventDefault();
+    }
+
+    function LocalWeatherCallback(localWeather) {
+
+        output = "<br /> Locale: " + localWeather.data.request[0].query;
+        output += "<br /> Cloud Cover: " + localWeather.data.current_condition[0].cloudcover;
+        output += "<br /> Humidity: " + localWeather.data.current_condition[0].humidity;
+        output += "<br /> Temp C: " + localWeather.data.current_condition[0].temp_C;
+        output += "<br /> Visibility: " + localWeather.data.current_condition[0].weatherDesc[0].value;
+        output += "<br /> Observation Time: " + localWeather.data.current_condition[0].observation_time;
+        output += "<br /> Pressue: " + localWeather.data.current_condition[0].pressure;
+
+        resultContainer.empty();
+        resultContainer.html(output);
+
+    }
+
+    function JSONP_LocalWeather(input) {
+        var url = _PremiumApiBaseURL + 'weather.ashx?q=' + input.query + '&format=' + input.format + '&extra=' + input.extra + '&num_of_days=' + input.num_of_days + '&date=' + input.date + '&fx=' + input.fx + '&tp=' + input.tp + '&cc=' + input.cc + '&includelocation=' + input.includelocation + '&show_comments=' + input.show_comments + '&key=' + _PremiumApiKey;
+        showSpinner();
+        jsonP(url, input.callback);
+        hideSpinner();
+    }
+
+    function jsonP(url, callback) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            contentType: "application/json",
+            jsonpCallback: callback,
+            dataType: 'jsonp',
+            success: function (json) {
+                console.dir('success');
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+</script>
