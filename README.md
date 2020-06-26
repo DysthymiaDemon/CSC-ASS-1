@@ -10,7 +10,7 @@ Creating and Consuming Web API
 
 ## Diagram
 [Task 1 Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task1.pdf)
-[Task 3 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task3.jpg)
+![Task 3 Sequence Diagram](https://github.com/MyridianStar/CSC-ASS-1/blob/master/Diagrams/Task3.jpg)
 
 
 
