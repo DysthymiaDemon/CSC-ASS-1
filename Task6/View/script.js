@@ -3,13 +3,13 @@ let stripe, customer, price, card;
 
 let priceInfo = {
   basic: {
-    amount: '500',
+    amount: '200',
     name: 'Basic',
     interval: 'monthly',
     currency: 'USD',
   },
   premium: {
-    amount: '1500',
+    amount: '500',
     name: 'Premium',
     interval: 'monthly',
     currency: 'USD',
@@ -79,9 +79,11 @@ function stripeElements(publishableKey) {
       const latestInvoicePaymentIntentStatus = localStorage.getItem(
         'latestInvoicePaymentIntentStatus'
       );
+      console.log('invoice payment status :' + latestInvoicePaymentIntentStatus)
 
       if (latestInvoicePaymentIntentStatus === 'requires_payment_method') {
         const invoiceId = localStorage.getItem('latestInvoiceId');
+        console.log('invoice id: '+invoiceId)
         const isPaymentRetry = true;
         // create new payment method & retry payment on invoice with new payment method
         createPaymentMethod({
@@ -523,6 +525,93 @@ function cancelSubscription() {
     });
 }
 
+function pauseSubscription(){
+  let output = document.querySelector('#output');
+  changeLoadingStatePrices(true);
+  const params = new URLSearchParams(document.location.search.substring(1));
+  const subscriptionId = params.get('subscriptionId');
+  document.getElementById("output").innerHTML = ''
+
+  return fetch('/pause-subscription', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      subscriptionId: subscriptionId,
+    }),
+  })
+    .then((response) => {
+      output.append("Successfully paused subscription!")
+      return response.json();
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch(function(){
+      document.getElementById("output").innerHTML = ''
+      output.append("Error pausing subscription")
+    });
+}
+
+function resumeSubscription(){
+  let output = document.querySelector('#output');
+  document.getElementById("output").innerHTML = ''
+  changeLoadingStatePrices(true);
+  const params = new URLSearchParams(document.location.search.substring(1));
+  const subscriptionId = params.get('subscriptionId');
+
+  return fetch('/resume-subscription', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      subscriptionId: subscriptionId,
+    }),
+  })
+    .then((response) => {
+      output.append("Successfully resumed subscription!")
+      return response.json();
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch(function(){
+      document.getElementById("output").innerHTML = ''
+      output.append("Error resuming subscription")
+    })
+}
+
+function refundSubscription(){
+  let output = document.querySelector('#output');
+  document.getElementById("output").innerHTML = ''
+  changeLoadingStatePrices(true);
+  const params = new URLSearchParams(document.location.search.substring(1));
+  const paymentIntentId = params.get('paymentIntentId');
+
+  return fetch('/refund-subscription', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      paymentIntentId: paymentIntentId,
+    }),
+  })
+    .then((response) => {
+      output.append("Successfully refunded subscription!")
+      return response.json();
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch(function(){
+      document.getElementById("output").innerHTML = ''
+      output.append("Error refunding subscription")
+    })
+}
+
 function updateSubscription(priceId, subscriptionId) {
   return fetch('/update-subscription', {
     method: 'post',
@@ -539,7 +628,8 @@ function updateSubscription(priceId, subscriptionId) {
     })
     .then((response) => {
       return response;
-    });
+    })
+    
 }
 
 function retrieveCustomerPaymentMethod(paymentMethodId) {
@@ -653,6 +743,10 @@ function onSubscriptionSampleDemoComplete({
   let subscriptionId;
   let currentPeriodEnd;
   let customerId;
+  let payment_intent;
+
+  payment_intent = subscription.latest_invoice.payment_intent.id
+
   if (subscription) {
     subscriptionId = subscription.id;
     currentPeriodEnd = subscription.current_period_end;
@@ -678,16 +772,16 @@ function onSubscriptionSampleDemoComplete({
     '&customerId=' +
     customerId +
     '&paymentMethodId=' +
-    paymentMethodId;
+    paymentMethodId +
+    '&paymentIntentId=' +
+    payment_intent;
 }
 
 function demoChangePrice() {
   document.querySelector('#basic').classList.remove('border-pasha');
   document.querySelector('#premium').classList.remove('border-pasha');
   document.querySelector('#price-change-form').classList.add('hidden');
-
-  // Grab the priceId from the URL
-  // This is meant for the demo, replace with a cache or database.
+  
   const params = new URLSearchParams(document.location.search.substring(1));
   const priceId = params.get('priceId').toLowerCase();
 

@@ -2,11 +2,14 @@ const express = require('express');
 const app = express();
 const { resolve } = require('path');
 const bodyParser = require('body-parser');
+
+// Get env file for keys and Ids
 const dotenv = require('dotenv');
 dotenv.config();
-// Replace if using a different env file or config
+
 app.use(express.static('view'));
 
+// Stripe
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 var server = app.listen(process.env.PORT, function () {
@@ -14,7 +17,7 @@ var server = app.listen(process.env.PORT, function () {
     console.log('Web App Hosted at http://localhost:%s/index.html', port);
 });
 
-// Use JSON parser for all non-webhook routes.
+// Use JSON parser for all non-webhook routes
 app.use((req, res, next) => {
   if (req.originalUrl === '/stripe-webhook') {
     next();
@@ -39,10 +42,6 @@ app.post('/create-customer', async (req, res) => {
   const customer = await stripe.customers.create({
     email: req.body.email,
   });
-
-  // save the customer.id as stripeCustomerId
-  // in your database.
-
   res.send({ customer });
 });
 
@@ -67,7 +66,6 @@ try{
 }catch (error) {
   return res.status('402').send({ error: { message: error.message } });
 }
-
   // Create the subscription
   const subscription = await stripe.subscriptions.create({
     customer: req.body.customerId,
@@ -107,7 +105,6 @@ app.post('/retrieve-upcoming-invoice', async (req, res) => {
   const subscription = await stripe.subscriptions.retrieve(
     req.body.subscriptionId
   );
-
   const invoice = await stripe.invoices.retrieveUpcoming({
     subscription_prorate: true,
     customer: req.body.customerId,
@@ -127,6 +124,7 @@ app.post('/retrieve-upcoming-invoice', async (req, res) => {
 });
 
  app.post('/manage-billing', async (req, res) =>{
+   // redirect to customer billing portal hosted by Stripe
     try{
       stripe.billingPortal.sessions.create(
         {
@@ -150,6 +148,39 @@ app.post('/cancel-subscription', async (req, res) => {
   );
   res.send(deletedSubscription);
 });
+
+app.post('/pause-subscription', async (req, res) => {
+  // Pause the subscription
+  const subscription = await stripe.subscriptions.update(
+    req.body.subscriptionId,
+    {
+      pause_collection: {
+        behavior: 'mark_uncollectible',
+      },
+    }
+  );
+  res.send(subscription);
+});
+
+app.post('/resume-subscription', async (req, res) => {
+  // Resume the subscription
+  const subscription = await stripe.subscriptions.update(
+    req.body.subscriptionId,
+    {
+      pause_collection: '',
+    }
+  );
+  res.send(subscription);
+});
+
+app.post('/refund-subscription', async (req, res) => {
+  // Refund the subscription
+  const refund = await stripe.refunds.create({
+    payment_intent: req.body.paymentIntentId,
+  });
+  res.send(refund);
+});
+
 
 app.post('/update-subscription', async (req, res) => {
   const subscription = await stripe.subscriptions.retrieve(
@@ -178,12 +209,12 @@ app.post('/retrieve-customer-payment-method', async (req, res) => {
 
   res.send(paymentMethod);
 });
+
 // Webhook handler for asynchronous events.
 app.post(
   '/stripe-webhook',
   bodyParser.raw({ type: 'application/json' }),
   async (req, res) => {
-    // Retrieve the event by verifying the signature using the raw body and secret.
     let event;
 
     try {
@@ -200,43 +231,29 @@ app.post(
       );
       return res.sendStatus(400);
     }
-    // Extract the object from the event.
     const dataObject = event.data.object;
 
-    // Handle the event
-    // Review important events for Billing webhooks
-    // https://stripe.com/docs/billing/webhooks
-    // Remove comment to see the various objects sent for this sample
     switch (event.type) {
       case 'invoice.payment_succeeded':
-        // Used to provision services after the trial has ended.
-        // The status of the invoice will show up as paid. Store the status in your
-        // database to reference when a user accesses your service to avoid hitting rate limits.
+
         break;
       case 'invoice.payment_failed':
-        // If the payment fails or the customer does not have a valid payment method,
-        //  an invoice.payment_failed event is sent, the subscription becomes past_due.
-        // Use this webhook to notify your user that their payment has
-        // failed and to retrieve new card details.
+
         break;
       case 'invoice.finalized':
-        // If you want to manually send out invoices to your customers
-        // or store them locally to reference to avoid hitting Stripe rate limits.
+
         break;
       case 'customer.subscription.deleted':
         if (event.request != null) {
-          // handle a subscription cancelled by your request
-          // from above.
+
         } else {
-          // handle subscription cancelled automatically based
-          // upon your subscription settings.
+
         }
         break;
       case 'customer.subscription.trial_will_end':
-        // Send notification to your user that the trial will end
+
         break;
       default:
-      // Unexpected event type
     }
     res.sendStatus(200);
   }

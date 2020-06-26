@@ -74,6 +74,28 @@
             >
               <span>Cancel subscription <span>→</span></span>
             </div>
+            <div
+              class="flex justify-between mt-2 mb-2 text-gray-900 font-bold text-xl cursor-pointer"
+              onClick="pauseSubscription()"
+            >
+              <span>Pause subscription <span></span></span>
+            </div>
+            <div
+              class="flex justify-between mt-2 mb-2 text-gray-900 font-bold text-xl cursor-pointer"
+              onClick="resumeSubscription()"
+            >
+              <span>Resume subscription <span></span></span>
+            </div>
+
+            <div
+              class="flex justify-between mt-2 mb-2 text-gray-900 font-bold text-xl cursor-pointer"
+              onClick="refundSubscription()"
+            >
+              <span>Request for refund <span></span></span>
+            </div>
+            <div id="output">
+
+            </div>
           </div>
 
           <div id="prices-form" class="w-full mr-4 md:mb-8 hidden">
