@@ -66,10 +66,13 @@ Description: Post 1 Student
 URI Parameters: None
 
 Body Parameters: 
->Name [String] **Required**
->Year [Int] **Required**
->Course [String] **Required**
->Email [String] **Required**
+
+Name | Variable | Required
+------------ | ------------- | ------------- 
+Name | [String] | **Required**
+Year | [Int] | **Required**
+Course | [String] | **Required**
+Email | [String] | **Required**
 
 Response : 201 Created
 {
