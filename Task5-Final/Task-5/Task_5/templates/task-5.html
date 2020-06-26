@@ -1,0 +1,272 @@
+﻿
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<form id="uploadForm" enctype="multipart/form-data">
+    <div class="file-upload">
+        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+        <div class="image-upload-wrap">
+            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+            <div class="drag-text">
+                <h3>Drag and drop a file or select add Image</h3>
+            </div>
+        </div>
+        <div class="file-upload-content">
+            <img class="file-upload-image" src="#" alt="your image" />
+            <div class="image-title-wrap">
+                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+            </div>
+            <div class="image-title-wrap">
+                <button type="submit" class="uploadbtn"> Upload </button>
+            </div>
+            <div>
+                <input type="text" id="longurl" readonly />
+                <input type="text" id="shorturl" readonly />
+            </div>
+        </div>
+    </div>
+</form>
+<div id="spinner"></div>
+
+<script src="/static/scripts/jquery-1.10.2.js"></script>
+<script>
+
+    uploadForm.onsubmit = (e) => {
+        e.preventDefault();
+        upload();
+    };
+
+    function showSpinner() {
+        spinner.className = "show";
+    }
+
+    function hideSpinner() {
+        spinner.className = spinner.className.replace("show", "");
+    }
+
+    function upload() {
+        showSpinner()
+        var short = document.getElementById("shorturl")
+        var long = document.getElementById("longurl")
+        short.innerHTML = ""
+        long.innerHTML = ""
+
+        var input = {
+            file: filepath.name
+        }
+
+            $.ajax({
+                data: input,
+                type: 'POST',
+                url: `${window.origin}/task5/upload`
+            }).done(function (data) {
+                if (data.error) {
+                    console.log("error")
+                    hideSpinner()
+                }
+                else {
+                    console.log(JSON.parse(data))
+                    var response = JSON.parse(data)
+                    short.value = response['link']
+                    long.value = response['long_url']
+                    console.log("done")
+                    hideSpinner()
+                }
+            })
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            filepath = input.files[0];
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+</script>
+
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #eeeeee;
+    }
+
+    .uploadbtn {
+        background: #1FB264;
+        color: #fff;
+        border: none;
+        width: 30%;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #15824B;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .file-upload {
+        background-color: #ffffff;
+        width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .file-upload-btn {
+        width: 100%;
+        margin: 0;
+        color: #fff;
+        background: #1FB264;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #15824B;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+        .file-upload-btn:hover {
+            background: #1AA059;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .file-upload-btn:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        margin-top: 20px;
+        border: 4px dashed #1FB264;
+        position: relative;
+    }
+
+        .image-dropping,
+        .image-upload-wrap:hover {
+            background-color: #1FB264;
+            border: 4px dashed #ffffff;
+        }
+
+    .image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+    }
+
+    .drag-text {
+        text-align: center;
+    }
+
+        .drag-text h3 {
+            font-weight: 100;
+            text-transform: uppercase;
+            color: #15824B;
+            padding: 60px 0;
+        }
+
+    .file-upload-image {
+        max-height: 200px;
+        max-width: 200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .remove-image {
+        width: 200px;
+        margin: 0;
+        color: #fff;
+        background: #cd4535;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #b02818;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+        .remove-image:hover {
+            background: #c13b2a;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .remove-image:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+
+    #spinner {
+        visibility: hidden;
+        width: 80px;
+        height: 80px;
+        border: 2px solid #f3f3f3;
+        border-top: 3px solid #f25a41;
+        border-radius: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    #spinner.show {
+        visibility: visible;
+    }
+</style>
