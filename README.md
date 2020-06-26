@@ -1,5 +1,6 @@
-# CSC-ASS-1
-Creating and Consuming Web API 
+# ST0280 : CLOUD AND SERVICE COMPUTING Assignment 1
+### Group: Philip and Ameen
+### Lecterur: Mr Choo Jek Bao
 
 ## Table of Contents 
 
