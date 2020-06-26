@@ -12,7 +12,7 @@ Creating and Consuming Web API
 
 ## Documents
 
-### Task 1
+### Task 2
 
 #### **GET** api/v1/students
 Description: Get all Students
@@ -86,7 +86,21 @@ Response : 201 Created
 
 
 
-### Task 2
+### Task 5
+#### **POST** /task5/upload
+Description: Post an upload of an Image from a URL
+
+URI Parameters: None
+
+Body Parameters: 
+
+Name | Variable | Required
+------------ | ------------- | ------------- 
+file | [String] | **Required**
+
+Response : 200 OK
+{"created_at":"2020-06-25T23:04:18+0000","id":"bit.ly/2NuusRZ","link":"https://bit.ly/2NuusRZ","custom_bitlinks":[],"long_url":"https://bucketdemotwo.s3-ap-southeast-1.amazonaws.com/tomjerry.png","archived":false,"tags":[],"deeplinks":[],"references":{"group":"https://api-ssl.bitly.com/v4/groups/Bk6pfn3dDOk"}}
+
 
 
 ## Team
