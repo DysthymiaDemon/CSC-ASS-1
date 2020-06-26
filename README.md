@@ -1,5 +1,4 @@
 # ST0280 : CLOUD AND SERVICE COMPUTING Assignment 1
-### Group: Philip and Ameen
 
 ## Table of Contents 
 
