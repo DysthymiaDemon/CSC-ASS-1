@@ -14,14 +14,14 @@ Creating and Consuming Web API
 
 ### Task 2
 
-#### **GET** /api/v1/students
->Description: Get all Students
+>#### **GET** /api/v1/students
+Description: Get all Students
 
->URI Parameters: None
+URI Parameters: None
 
->Body Parameters: None
+Body Parameters: None
 
->Response : 200 OK 
+Response : 200 OK 
 [
     {
         "Id": 1,
