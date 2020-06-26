@@ -14,7 +14,7 @@ Creating and Consuming Web API
 
 ### Task 2
 
-#### **GET** api/v1/students
+#### **GET** /api/v1/students
 Description: Get all Students
 
 URI Parameters: None
@@ -60,7 +60,56 @@ Response : 200 OK
     }
 ]
 
-#### **POST** api/v1/students
+#### **GET** /api/v1/students/{id}
+Description: Get One Student By Id
+
+URI Parameters: None
+
+Body Parameters: None
+
+Response : 200 OK 
+{
+    "Id": 3,
+    "Name": "Darius",
+    "Year": 2,
+    "Course": "Diploma in Information Technology",
+    "Email": "darius@gmail.com"
+}
+
+#### **GET** /api/v1/students?course={course}
+Description: Get All Students In Specified Course
+
+URI Parameters: None
+
+Body Parameters: None
+
+Response : 200 OK 
+[
+    {
+        "Id": 1,
+        "Name": "Philip",
+        "Year": 3,
+        "Course": "Diploma in Information Technology",
+        "Email": "philip@gmail.com"
+    },
+    {
+        "Id": 2,
+        "Name": "Ameen",
+        "Year": 1,
+        "Course": "Diploma in Information Technology",
+        "Email": "ameen@gmail.com"
+    },
+    {
+        "Id": 3,
+        "Name": "Darius",
+        "Year": 2,
+        "Course": "Diploma in Information Technology",
+        "Email": "darius@gmail.com"
+    }
+]
+
+
+#### **POST** /api/v1/students
 Description: Post 1 Student
 
 URI Parameters: None
@@ -83,12 +132,57 @@ Response : 201 Created
     "Email": "NewStudent@hotmail.com"
 }
 
+#### **PUT** /api/v1/students/{id}
+Description: Update 1 Student
+
+URI Parameters: 
+
+------------ | ------------- | ------------- 
+Id | [Int] | **Required**
+
+Body Parameters: 
+
+Name | Variable | Required
+------------ | ------------- | ------------- 
+Id | [Int] | None
+Name | [String] | **Required**
+Year | [Int] | **Required**
+Course | [String] | **Required**
+Email | [String] | **Required**
+
+Response : 200 OK
+{
+    "Id": 6,
+    "Name": "CreateStudent",
+    "Year": 1,
+    "Course": "Diploma in Business Information Technology",
+    "Email": "NewStudent@hotmail.com"
+}
+
+#### **DELETE** /api/v1/students/{id}
+Description: Delete 1 Student
+
+URI Parameters: 
+
+------------ | ------------- | ------------- 
+Id | [Int] | **Required**
+
+Body Parameters: None
+
+Response : 200 OK
+{
+    "Id": 6,
+    "Name": "CreateStudent",
+    "Year": 1,
+    "Course": "Diploma in Business Information Technology",
+    "Email": "NewStudent@hotmail.com"
+}
 
 
+### Task 3
 
-### Task 5
-#### **POST** /task5/upload
-Description: Post an upload of an Image from a URL
+#### **POST** /api/Account/Verify
+Description: Verify registration with ReCaptcha V3
 
 URI Parameters: None
 
@@ -96,12 +190,17 @@ Body Parameters:
 
 Name | Variable | Required
 ------------ | ------------- | ------------- 
-file | [String] | **Required**
+Email | [String] | **Required**
+Password | [String] | **Required**
+ConfirmPassword | [String] | **Required**
+Recaptcha | [String] | **Required**
 
 Response : 200 OK
-{"created_at":"2020-06-25T23:04:18+0000","id":"bit.ly/2NuusRZ","link":"https://bit.ly/2NuusRZ","custom_bitlinks":[],"long_url":"https://bucketdemotwo.s3-ap-southeast-1.amazonaws.com/tomjerry.png","archived":false,"tags":[],"deeplinks":[],"references":{"group":"https://api-ssl.bitly.com/v4/groups/Bk6pfn3dDOk"}}
+{
+    true
+}
 
-
+### Task 4
 
 ## Team
 
