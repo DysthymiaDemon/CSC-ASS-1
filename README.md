@@ -136,7 +136,7 @@ Response : 201 Created
 Description: Update 1 Student
 
 URI Parameters: 
-
+Name | Variable | Required
 ------------ | ------------- | ------------- 
 Id | [Int] | **Required**
 
@@ -163,7 +163,7 @@ Response : 200 OK
 Description: Delete 1 Student
 
 URI Parameters: 
-
+Name | Variable | Required
 ------------ | ------------- | ------------- 
 Id | [Int] | **Required**
 
